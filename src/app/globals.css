@@ -23,6 +23,16 @@
   --radius-sm: 3px;
 
   --animate-blink: blink 1.1s steps(2, start) infinite;
+  --animate-slide: slide 1.4s ease-in-out infinite;
+
+  @keyframes slide {
+    from {
+      transform: translateX(-100%);
+    }
+    to {
+      transform: translateX(300%);
+    }
+  }
 
   @keyframes blink {
     to {
