@@ -33,12 +33,6 @@ export function ButtonLink({
   return <Link className={buttonClass(variant, className)} {...props} />;
 }
 
-export function Kbd({ children }: { children: ReactNode }) {
-  return (
-    <kbd className="rounded-xs border border-current/30 px-1 font-mono text-[10px] leading-4 opacity-70">{children}</kbd>
-  );
-}
-
 export const inputClass =
   "block w-full rounded-xs border border-rule-strong bg-panel px-2.5 py-1.5 text-[14px] text-ink placeholder:text-ink-3 focus:border-ink focus:outline-none disabled:bg-sunk disabled:text-ink-2";
 
