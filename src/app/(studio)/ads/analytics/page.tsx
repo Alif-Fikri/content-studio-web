@@ -3,7 +3,7 @@ import type { ReactNode } from "react";
 import Link from "next/link";
 import { DailyTable, SpendClicksCharts, TotalsRow } from "@/components/metrics-view";
 import { PlatformTag } from "@/components/status";
-import { buttonClass, inputClass, LoadError, PageHeader, Section } from "@/components/ui";
+import { buttonClass, inputBase, LoadError, PageHeader, Section } from "@/components/ui";
 import { load } from "@/lib/api/server";
 import type { AdEntry, AdMetric, ContentItem } from "@/lib/api/types";
 import { formatDate, formatInt, formatPercent, formatRupiah } from "@/lib/format";
@@ -79,7 +79,7 @@ export default async function AnalyticsPage({ searchParams }: PageProps<"/ads/an
               name="from"
               aria-label="Dari tanggal"
               defaultValue={range.from ?? ""}
-              className={`${inputClass} w-auto font-mono text-[13px]`}
+              className={`${inputBase} w-40 font-mono text-[13px]`}
             />
             <span className="text-ink-3">–</span>
             <input
@@ -87,7 +87,7 @@ export default async function AnalyticsPage({ searchParams }: PageProps<"/ads/an
               name="to"
               aria-label="Sampai tanggal"
               defaultValue={range.to ?? ""}
-              className={`${inputClass} w-auto font-mono text-[13px]`}
+              className={`${inputBase} w-40 font-mono text-[13px]`}
             />
             <button type="submit" className={buttonClass("secondary")}>
               Terapkan

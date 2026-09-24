@@ -41,7 +41,7 @@ export function VideoPreview({ itemId, version, rendered, overlay, videoRef, cur
 
   return (
     <div>
-      <div className="relative flex aspect-[9/16] max-h-[70dvh] w-full items-center justify-center overflow-hidden bg-ink text-paper">
+      <div className="relative mx-auto flex aspect-[9/16] h-[55dvh] items-center lg:h-auto lg:max-h-[70dvh] lg:w-full justify-center overflow-hidden bg-ink text-paper">
         {version === null ? (
           <span className="px-6 text-center text-[13px] text-paper/60">Belum ada video untuk konten ini.</span>
         ) : url.isPending ? (

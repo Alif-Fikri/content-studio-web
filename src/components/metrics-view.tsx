@@ -1,7 +1,8 @@
-import { LineChart } from "@/components/line-chart";
 import { Stat } from "@/components/ui";
 import { formatCompact, formatInt, formatPercent, formatRupiah, formatShortDate } from "@/lib/format";
 import type { DayRow, Totals } from "@/lib/metrics";
+
+export { SpendClicksCharts } from "@/components/spend-clicks-charts";
 
 export function TotalsRow({ totals }: { totals: Totals }) {
   return (
@@ -15,25 +16,6 @@ export function TotalsRow({ totals }: { totals: Totals }) {
         label="Biaya per klik"
         value={Number.isFinite(totals.cpc) ? formatRupiah(totals.cpc) : "—"}
         sub={Number.isFinite(totals.cpm) ? `CPM ${formatRupiah(totals.cpm)}` : undefined}
-      />
-    </div>
-  );
-}
-
-export function SpendClicksCharts({ rows }: { rows: DayRow[] }) {
-  return (
-    <div className="grid gap-8 xl:grid-cols-2">
-      <LineChart
-        title="Spend harian"
-        points={rows.map((row) => ({ date: row.date, value: row.spend }))}
-        format={formatRupiah}
-        formatAxis={formatCompact}
-      />
-      <LineChart
-        title="Klik harian"
-        points={rows.map((row) => ({ date: row.date, value: row.clicks }))}
-        format={(value) => `${formatInt(value)} klik`}
-        formatAxis={formatCompact}
       />
     </div>
   );

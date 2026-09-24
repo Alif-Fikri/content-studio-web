@@ -33,8 +33,10 @@ export function ButtonLink({
   return <Link className={buttonClass(variant, className)} {...props} />;
 }
 
-export const inputClass =
-  "block w-full rounded-xs border border-rule-strong bg-panel px-2.5 py-1.5 text-[14px] text-ink placeholder:text-ink-3 focus:border-ink focus:outline-none disabled:bg-sunk disabled:text-ink-2";
+export const inputBase =
+  "block rounded-xs border border-rule-strong bg-panel px-2.5 py-1.5 text-[14px] text-ink placeholder:text-ink-3 focus:border-ink focus:outline-none disabled:bg-sunk disabled:text-ink-2";
+
+export const inputClass = `${inputBase} w-full`;
 
 export function Label({ children, htmlFor, hint }: { children: ReactNode; htmlFor?: string; hint?: ReactNode }) {
   return (
