@@ -1,17 +1,28 @@
 import { createClient } from "@/lib/supabase/browser";
 import { ApiError, request } from "./http";
 
-const expired = "Sesi berakhir. Muat ulang halaman untuk masuk lagi.";
+const expired = "Sesi berakhir. Mengarahkan ke halaman masuk…";
+
+let unauthorizedHandler: (() => void) | null = null;
+
+export function setUnauthorizedHandler(handler: (() => void) | null) {
+  unauthorizedHandler = handler;
+}
+
+function unauthorized(): never {
+  unauthorizedHandler?.();
+  throw new ApiError(401, expired);
+}
 
 export async function api<T>(path: string, init?: RequestInit): Promise<T> {
   const { data } = await createClient().auth.getSession();
   const token = data.session?.access_token;
-  if (!token) throw new ApiError(401, expired);
+  if (!token) unauthorized();
 
   try {
     return await request<T>(token, path, init);
   } catch (error) {
-    if (error instanceof ApiError && error.status === 401) throw new ApiError(401, expired);
+    if (error instanceof ApiError && error.status === 401) unauthorized();
     throw error;
   }
 }

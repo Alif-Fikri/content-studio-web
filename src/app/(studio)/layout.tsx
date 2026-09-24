@@ -1,4 +1,5 @@
 import { Providers } from "@/components/providers";
+import { SessionGuard } from "@/components/session-guard";
 import { Sidebar } from "@/components/sidebar";
 import { createClient } from "@/lib/supabase/server";
 
@@ -9,6 +10,7 @@ export default async function StudioLayout({ children }: LayoutProps<"/">) {
 
   return (
     <Providers>
+      <SessionGuard />
       <div className="flex min-h-dvh flex-col md:flex-row">
         <Sidebar email={email} />
         <main className="min-w-0 flex-1">{children}</main>

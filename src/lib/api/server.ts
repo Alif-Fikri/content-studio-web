@@ -14,7 +14,13 @@ export async function load<T>(path: string): Promise<Loaded<T>> {
     return { ok: true, data: await request<T>(token, path) };
   } catch (error) {
     if (error instanceof ApiError) {
-      if (error.status === 401) redirect("/login");
+      if (error.status === 401) {
+        return {
+          ok: false,
+          status: 401,
+          error: `API menolak token login (${error.message}). Sesi Supabase valid, jadi cek SUPABASE_JWKS_URL di backend.`,
+        };
+      }
       return { ok: false, status: error.status, error: error.message };
     }
     return { ok: false, status: 0, error: error instanceof Error ? error.message : "Terjadi kesalahan." };
