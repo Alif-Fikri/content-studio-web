@@ -66,3 +66,43 @@ export type SyncResult = {
   synced: number;
   total: number;
 };
+
+export type App = {
+  id: string;
+  name: string;
+  package_name: string;
+  play_console_url?: string | null;
+  created_at: string;
+  updated_at: string;
+};
+
+export type ReleaseTrack = "internal" | "closed" | "open" | "production";
+export type ReleaseStatus = "draft" | "uploaded" | "publishing" | "rolled_out" | "failed";
+
+export type Release = {
+  id: string;
+  app_id: string;
+  track: ReleaseTrack;
+  version_code: number;
+  version_name: string;
+  status: ReleaseStatus;
+  error?: string | null;
+  created_at: string;
+  released_at?: string | null;
+};
+
+export type AppMetric = {
+  id: string;
+  app_id: string;
+  date: string;
+  crash_rate: number;
+  anr_rate: number;
+  rating_avg: number;
+  rating_count: number;
+};
+
+export type AppDashboardEntry = {
+  app: App;
+  latest_release?: Release | null;
+  latest_metric?: AppMetric | null;
+};

@@ -20,6 +20,10 @@ const sections = [
       { href: "/ads/analytics", label: "Analitik", match: (path: string) => path === "/ads/analytics" },
     ],
   },
+  {
+    title: "Apps",
+    links: [{ href: "/apps", label: "Rilis & vitals", match: (path: string) => path === "/apps" || path.startsWith("/apps/") }],
+  },
 ];
 
 export function Sidebar({ email }: { email: string | null }) {

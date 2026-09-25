@@ -28,6 +28,11 @@ export function formatPercent(value: number): string {
   return `${(value * 100).toFixed(2).replace(".", ",")}%`;
 }
 
+export function formatRate(percentValue: number): string {
+  if (!Number.isFinite(percentValue)) return "—";
+  return `${percentValue.toFixed(2).replace(".", ",")}%`;
+}
+
 export function formatDate(value: string): string {
   return fullDate.format(new Date(value));
 }
